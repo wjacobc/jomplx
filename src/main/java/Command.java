@@ -1,8 +1,18 @@
+/**
+ * Object representing the most generic kind of command held in the memory of 
+ * the LC-3. All actionable commands (e.g. ADD, LDR, NOT) extend Command, but
+ * Command can be instantiated in the case of malformed commands.
+ */
 public class Command {
 	private short bytes;
 	private Op opcode;
 
-
+	/**
+	 * Generic constructor for a Command object. Sets the short bytes value and the provided 
+	 * opcode enum.
+	 * @param bytes the numeric value of the command
+	 * @param op the opcode of the command
+	 */
 	public Command(short bytes, Op op) {
 		this.bytes = bytes;
 		this.opcode = op;
@@ -25,6 +35,11 @@ public class Command {
 		return opcode.name() + ": " + byteString;
 	}
 
+	/**
+	 * Static helper method that returns the Op enum representation of a command's short value passed in.
+	 * @param short opcode the short value of the command
+	 * @return an Op enum representing the type of command
+	 */
 	public static Op parseOpcode(short opcode) {
 		switch ((int) opcode) {
 			case 0:
@@ -44,7 +59,7 @@ public class Command {
 			case 7:
 				return Op.STR;
 			case 8:
-				throw new MalformedCommandException();
+				return Op.NOP;
 			case 9:
 				return Op.NOT;
 			case 10:
@@ -54,13 +69,13 @@ public class Command {
 			case 12:
 				return Op.JMP;
 			case 13:
-				throw new MalformedCommandException();
+				return Op.NOP;
 			case 14:
 				return Op.LEA;
 			case 15:
 				return Op.TRAP;
 		}
 
-		return null;
+		return Op.NOP;
 	}
 }
