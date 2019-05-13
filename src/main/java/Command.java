@@ -24,8 +24,7 @@ public class Command {
 	 * @return a Command object representation
 	 */
 	public static Command parseCommand(short com) {
-		short opcode = (short) ((int) com >>> 12);
-		Op op = parseOpcode(opcode);
+		Op op = parseOpcode(com);
 		return new Command(com, op);
 	}
 
@@ -37,11 +36,17 @@ public class Command {
 
 	/**
 	 * Static helper method that returns the Op enum representation of a command's short value passed in.
-	 * @param short opcode the short value of the command
+	 * @param com the short value of the command
 	 * @return an Op enum representing the type of command
 	 */
-	public static Op parseOpcode(short opcode) {
-		switch ((int) opcode) {
+	public static Op parseOpcode(short com) {
+		if (com > 15) {
+			com = (short) ((int) com >>> 12);
+		}
+		if (com > 15 || com < 0) {
+			return Op.NOP;
+		}
+		switch ((int) com) {
 			case 0:
 				return Op.BR;
 			case 1:
