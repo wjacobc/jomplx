@@ -6,6 +6,8 @@
 public class Command {
 	private short bytes;
 	private Op opcode;
+	private String label;
+	private String comment;
 
 	/**
 	 * Generic constructor for a Command object. Sets the short bytes value and the provided 
