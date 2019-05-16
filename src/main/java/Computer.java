@@ -6,8 +6,8 @@ public class Computer {
 	private static final int maxMemory = 65536;
 	private static short[] registers = new short[8];
 	private static Command[] memory = new Command[maxMemory];
-	private short pc;
-	private Cond cc;
+	private static short pc;
+	private static Cond cc;
 
 	/**
 	 * Method to set a particular register - requires converting the register

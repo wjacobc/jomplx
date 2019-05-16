@@ -4,10 +4,10 @@
  * Command can be instantiated in the case of malformed commands.
  */
 public class Command {
-	private short bytes;
-	private Op opcode;
-	private String label;
-	private String comment;
+	protected short bytes;
+	protected Op opcode;
+	protected String label;
+	protected String comment;
 
 	/**
 	 * Generic constructor for a Command object. Sets the short bytes value and the provided 
