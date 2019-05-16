@@ -16,6 +16,18 @@ public class Add extends Command {
 		this.imm5 = imm5;
 	}
 
+	@Override
+	public void execute() {
+		short newValue;
+		if (!usingImm) {
+			newValue = (short) (Computer.getRegister(sr1) + Computer.getRegister(sr2));
+		} else {
+			newValue = (short) (Computer.getRegister(sr1) + (short) imm5);
+		}
+
+		Computer.setRegister(dr, newValue);
+	}
+
 	public static Add parseAddCommand(short value) {
 		Op opcode = Op.ADD;
 		int dr = ((int) value >> 9) & 7;

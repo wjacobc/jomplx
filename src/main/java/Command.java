@@ -20,6 +20,10 @@ public class Command {
 		this.opcode = op;
 	}
 
+	public void execute() {
+		throw new UnsupportedOperationException();
+	}
+
 	/**
 	 * Static helper method that takes a short and returns a command object.
 	 * @param com the short representation of the machine code command passed in
