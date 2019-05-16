@@ -5,7 +5,7 @@
 public class Computer {
 	private static final int maxMemory = 65536;
 	private static short[] registers = new short[8];
-	private static short[] memory = new short[maxMemory];
+	private static Command[] memory = new Command[maxMemory];
 	private short pc;
 	private Cond cc;
 
@@ -23,10 +23,19 @@ public class Computer {
 	 * Method to set a memory location - also requires converting memory location
 	 * to an int
 	 * @param memoryLocation - the memory location we are setting
-	 * @param value - the short value you're setting the register to
+	 * @param value - the short value you're setting the memory location to
 	 */
 	public static void setMemory(int memoryLocation, short value) {
-		memory[memoryLocation] = value;
+		memory[memoryLocation] = Command.parseCommand(value);
+	}
+
+	/**
+	 * Method to set a memory location, but takes in a command, not a value
+	 * @param memoryLocation - the memory location we are setting
+	 * @param com - the Command object you're setting the memory location to
+	 */
+	public static void setMemory(int memoryLocation, Command com) {
+		memory[memoryLocation] = com;
 	}
 
 	/**
@@ -34,7 +43,7 @@ public class Computer {
 	 * @param memoryLocation - the location in memory to get
 	 * @return the short value at that location
 	 */
-	public static short getMemory(int memoryLocation) {
+	public static Command getMemory(int memoryLocation) {
 		return memory[memoryLocation];
 	}
 
