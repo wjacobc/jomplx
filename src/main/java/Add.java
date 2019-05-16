@@ -1,11 +1,18 @@
+/**
+ * LC-3 command that adds numbers together. Can either use an imm5 value or
+ * pull from a second register.
+ */
 public class Add extends Command {
-	
 	private int dr;
 	private int sr1;
 	private boolean usingImm;
 	private int sr2;
 	private int imm5;
 
+	/**
+	 * Constructor for the Add command. Intended to be used internally by the
+	 * parseAddCommand method, that's called by Command.
+	 */
 	public Add(short value, Op opcode, int dr, int sr1, boolean usingImm, 
 				int sr2, int imm5) {
 		super(value, opcode);
@@ -28,6 +35,12 @@ public class Add extends Command {
 		Computer.setRegister(dr, newValue);
 	}
 
+	/**
+	 * Converts a 16-bit value into a valid add command. Parses out source
+	 * and destination registers as well as checking for imm5 value.
+	 * @param value - the 16-bit value representing the command
+	 * @return valid Add command object
+	 */
 	public static Add parseAddCommand(short value) {
 		Op opcode = Op.ADD;
 		int dr = ((int) value >> 9) & 7;

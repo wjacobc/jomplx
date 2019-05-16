@@ -10,8 +10,8 @@ public class Command {
 	protected String comment;
 
 	/**
-	 * Generic constructor for a Command object. Sets the short bytes value and the provided 
-	 * opcode enum.
+	 * Generic constructor for a Command object. Sets the short bytes value 
+	 * and the provided opcode enum.
 	 * @param bytes the numeric value of the command
 	 * @param op the opcode of the command
 	 */
@@ -20,13 +20,18 @@ public class Command {
 		this.opcode = op;
 	}
 
+	/**
+	 * Method itended to be overwritten by subclasses, so that the computer
+	 * memory can be iterated over. If a Command object has this called on it,
+	 * that means that it's a malformed operation, so we throw an exception.
+	 */
 	public void execute() {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Static helper method that takes a short and returns a command object.
-	 * @param com the short representation of the machine code command passed in
+	 * @param com the short representation of the machine code passed in
 	 * @return a Command object representation
 	 */
 	public static Command parseCommand(short com) {
