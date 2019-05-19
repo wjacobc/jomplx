@@ -33,6 +33,10 @@ public class Add extends Command {
 		}
 
 		Computer.setRegister(dr, newValue);
+
+		Cond newCC = Cond.parseCC(newValue);
+
+		Computer.setCC(newCC);
 	}
 
 	/**
