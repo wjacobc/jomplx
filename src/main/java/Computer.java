@@ -56,4 +56,12 @@ public class Computer {
 		return registers[register];
 	}
 
+	public static void setCC(Cond newCC) {
+		cc = newCC;
+	}
+
+	public static Cond getCC() {
+		return cc;
+	}
+
 }
