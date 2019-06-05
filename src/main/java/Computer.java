@@ -11,7 +11,7 @@ public class Computer {
 
 	/**
 	 * Method to set a particular register - requires converting the register
-	 * to an int first to index into the array and handle two's complement 
+	 * to an int first to index into the array and handle two's complement
 	 * @param register - the register to be changed
 	 * @param value - the short value you're setting the register to
 	 */
@@ -56,10 +56,18 @@ public class Computer {
 		return registers[register];
 	}
 
+    /**
+     * Sets the computer's condition code
+     * @param newCC - the new condition code value
+     */
 	public static void setCC(Cond newCC) {
 		cc = newCC;
 	}
 
+    /**
+     * Returns the condition code of the computer, as a Cond enum value
+     * @return the value of the computer's condition code
+     */
 	public static Cond getCC() {
 		return cc;
 	}
